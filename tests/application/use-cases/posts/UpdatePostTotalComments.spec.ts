@@ -1,7 +1,7 @@
 import { UpdatePostTotalComments } from '@application/use-cases/posts/UpdatePostTotalComments';
+import { makeFakePost } from '@tests/domain/mocks/entities';
 import { GetTotalCommentsByPostIdRepositoryStub } from '@tests/infra/mocks/comments/repositories';
 import { UpdatePostTotalCommentsRepositoryStub } from '@tests/infra/mocks/posts/repositories';
-import { makeFakePost } from '@tests/domain/mocks/entities';
 
 type SutTypes = {
   sut: UpdatePostTotalComments;
@@ -26,7 +26,10 @@ const makeSut = (): SutTypes => {
 describe('DeletePost', () => {
   it('should call GetTotalCommentsByPostIdRepository with correct post id', async () => {
     const { sut, getTotalCommentsByPostIdRepositoryStub } = makeSut();
-    const getTotalCommentsByPostIdSpy = jest.spyOn(getTotalCommentsByPostIdRepositoryStub, 'getTotalCommentsByPostId');
+    const getTotalCommentsByPostIdSpy = jest.spyOn(
+      getTotalCommentsByPostIdRepositoryStub,
+      'getTotalCommentsByPostId',
+    );
     const { id } = makeFakePost();
     await sut.execute(id);
     expect(getTotalCommentsByPostIdSpy).toHaveBeenCalledWith(id);
@@ -34,7 +37,10 @@ describe('DeletePost', () => {
 
   it('should call UpdatePostTotalCommentsRepository with correct params', async () => {
     const { sut, updatePostTotalCommentsRepositoryStub } = makeSut();
-    const updatePostTotalCommentsSpy = jest.spyOn(updatePostTotalCommentsRepositoryStub, 'updatePostTotalComments');
+    const updatePostTotalCommentsSpy = jest.spyOn(
+      updatePostTotalCommentsRepositoryStub,
+      'updatePostTotalComments',
+    );
     const { id, totalComments } = makeFakePost();
     await sut.execute(id);
     expect(updatePostTotalCommentsSpy).toHaveBeenCalledWith({

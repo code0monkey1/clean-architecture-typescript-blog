@@ -1,6 +1,6 @@
+import { InvalidParamError } from '@infra/http/errors/InvalidParamError';
 import { Validation } from '@infra/http/interfaces/Validation';
 import { EmailValidator } from '@infra/http/validations/interfaces/EmailValidator';
-import { InvalidParamError } from '@infra/http/errors/InvalidParamError';
 
 export class EmailValidation implements Validation {
   constructor(

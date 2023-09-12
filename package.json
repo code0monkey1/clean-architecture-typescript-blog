@@ -10,7 +10,7 @@
     "dev": "nodemon -L --watch ./dist ./dist/main/server.js",
     "up": "concurrently --kill-others-on-fail \"npm run build:watch\" \"docker-compose up\"",
     "down": "docker-compose down",
-    "test": "jest --passWithNoTests --runInBand",
+    "test": "jest --passWithNoTests --runInBand --verbose --coverage",
     "test:staged": "npm run test -- --findRelatedTests",
     "test:ci": "npm run test -- --coverage",
     "lint": "eslint --ignore-path .gitignore --ext .ts --fix",

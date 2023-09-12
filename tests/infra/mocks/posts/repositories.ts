@@ -1,13 +1,15 @@
-import { Post } from '@domain/entities/Post';
 import { CreatePostRepository } from '@application/interfaces/repositories/posts/CreatePostRepository';
 import { DeletePostRepository } from '@application/interfaces/repositories/posts/DeletePostRepository';
 import { GetLatestPostsRepository } from '@application/interfaces/repositories/posts/GetLatestPostsRepository';
 import { GetPostByIdRepository } from '@application/interfaces/repositories/posts/GetPostByIdRepository';
 import { UpdatePostRepository } from '@application/interfaces/repositories/posts/UpdatePostRepository';
 import { UpdatePostTotalCommentsRepository } from '@application/interfaces/repositories/posts/UpdatePostTotalCommentsRepository';
+import { Post } from '@domain/entities/Post';
 import { makeFakePost } from '@tests/domain/mocks/entities';
 
-export const makeFakePaginationData = (data: Post[]): {
+export const makeFakePaginationData = (
+  data: Post[],
+): {
   data: Post[];
   page: number;
   total: number;
@@ -29,7 +31,9 @@ export class CreatePostRepositoryStub implements CreatePostRepository {
 }
 
 export class DeletePostRepositoryStub implements DeletePostRepository {
-  async deletePost(_postId: DeletePostRepository.Request): Promise<DeletePostRepository.Response> {}
+  async deletePost(
+    _postId: DeletePostRepository.Request,
+  ): Promise<DeletePostRepository.Response> {}
 }
 
 export class GetLatestPostsRepositoryStub implements GetLatestPostsRepository {
@@ -57,7 +61,8 @@ export class UpdatePostRepositoryStub implements UpdatePostRepository {
   }
 }
 
-export class UpdatePostTotalCommentsRepositoryStub implements UpdatePostTotalCommentsRepository {
+export class UpdatePostTotalCommentsRepositoryStub
+implements UpdatePostTotalCommentsRepository {
   async updatePostTotalComments(
     _params: UpdatePostTotalCommentsRepository.Request,
   ): Promise<UpdatePostTotalCommentsRepository.Response> {

@@ -1,7 +1,7 @@
-import { ControllerStub } from '@tests/infra/mocks/controllers';
-import { ValidationStub } from '@tests/infra/mocks/validators';
 import { badRequest, serverError } from '@infra/http/helpers/http';
 import { HttpRequest } from '@infra/http/interfaces/HttpRequest';
+import { ControllerStub } from '@tests/infra/mocks/controllers';
+import { ValidationStub } from '@tests/infra/mocks/validators';
 
 type SutTypes = {
   sut: ControllerStub;
@@ -32,7 +32,9 @@ describe('BaseController', () => {
 
   it('should return 400 if Validation fails', async () => {
     const { sut, validationStub } = makeSut();
-    jest.spyOn(validationStub, 'validate').mockReturnValueOnce(new Error('any_error'));
+    jest
+      .spyOn(validationStub, 'validate')
+      .mockReturnValueOnce(new Error('any_error'));
     const httpResponse = await sut.handle({});
     expect(httpResponse).toEqual(badRequest(new Error('any_error')));
   });
