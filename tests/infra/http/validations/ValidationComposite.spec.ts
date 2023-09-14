@@ -19,15 +19,21 @@ const makeSut = (): SutTypes => {
 describe('ValidationComposite', () => {
   it('should return an error if any validation fails', () => {
     const { sut, validationStubs } = makeSut();
-    jest.spyOn(validationStubs[0], 'validate').mockImplementation(() => new Error('any_error'));
+    jest
+      .spyOn(validationStubs[0], 'validate')
+      .mockImplementation(() => new Error('any_error'));
     const error = sut.validate({});
     expect(error).toEqual(new Error('any_error'));
   });
 
   it('should return the first error if more than one validation fails', () => {
     const { sut, validationStubs } = makeSut();
-    jest.spyOn(validationStubs[0], 'validate').mockImplementation(() => new Error('any_error'));
-    jest.spyOn(validationStubs[1], 'validate').mockImplementation(() => new Error('other_error'));
+    jest
+      .spyOn(validationStubs[0], 'validate')
+      .mockImplementation(() => new Error('any_error'));
+    jest
+      .spyOn(validationStubs[1], 'validate')
+      .mockImplementation(() => new Error('other_error'));
     const error = sut.validate({});
     expect(error).toEqual(new Error('any_error'));
   });
