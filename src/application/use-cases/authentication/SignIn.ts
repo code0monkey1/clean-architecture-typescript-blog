@@ -1,8 +1,8 @@
-import { SignInInterface } from '@application/interfaces/use-cases/authentication/SignInInterface';
-import { LoadUserByEmailRepository } from '@application/interfaces/repositories/authentication/LoadUserByEmailRepository';
+import { UnauthorizedError } from '@application/errors/UnauthorizedError';
 import { HashComparer } from '@application/interfaces/cryptography/HashComparer';
 import { JWTGenerator } from '@application/interfaces/cryptography/JWTGenerator';
-import { UnauthorizedError } from '@application/errors/UnauthorizedError';
+import { LoadUserByEmailRepository } from '@application/interfaces/repositories/authentication/LoadUserByEmailRepository';
+import { SignInInterface } from '@application/interfaces/use-cases/authentication/SignInInterface';
 
 export class SignIn implements SignInInterface {
   constructor(
@@ -19,7 +19,10 @@ export class SignIn implements SignInInterface {
     if (!user) {
       return new UnauthorizedError();
     }
-    const isPasswordValid = await this.hashComparer.compare(password, user.password);
+    const isPasswordValid = await this.hashComparer.compare(
+      password,
+      user.password,
+    );
     if (!isPasswordValid) {
       return new UnauthorizedError();
     }
