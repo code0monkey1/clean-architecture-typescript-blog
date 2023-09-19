@@ -1,7 +1,7 @@
-import { HttpResponse } from '@infra/http/interfaces/HttpResponse';
 import { ServerError } from '@infra/http/errors/ServerError';
+import { HttpResponse } from '@infra/http/interfaces/HttpResponse';
 
-export const ok = <T = any> (body: T): HttpResponse<T> => ({
+export const ok = <T = any>(body: T): HttpResponse<T> => ({
   statusCode: 200,
   body,
 });
