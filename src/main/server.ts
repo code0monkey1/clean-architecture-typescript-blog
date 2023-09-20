@@ -1,7 +1,7 @@
-import 'module-alias/register';
 import DbConnection from '@infra/db/mongodb/helpers/db-connection';
 import setupApp from '@main/config/app';
 import env from '@main/config/env';
+import 'module-alias/register';
 
 DbConnection.connect(env.mongodbUrl)
   .then(async () => {
