@@ -7,6 +7,6 @@ export interface UpdatePostTotalCommentsRepository {
 }
 
 export namespace UpdatePostTotalCommentsRepository {
-  export type Request = { postId: string, totalComments: number };
+  export type Request = { postId: string; totalComments: number };
   export type Response = Post;
 }
