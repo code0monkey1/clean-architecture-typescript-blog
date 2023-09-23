@@ -1,6 +1,6 @@
 import { CreatePost } from '@application/use-cases/posts/CreatePost';
-import { CreatePostRepositoryStub } from '@tests/infra/mocks/posts/repositories';
 import { makeFakePost } from '@tests/domain/mocks/entities';
+import { CreatePostRepositoryStub } from '@tests/infra/mocks/posts/repositories';
 
 type SutTypes = {
   sut: CreatePost;
@@ -23,7 +23,10 @@ describe('CreatePost', () => {
     const { userId, title, text } = makeFakePost();
     await sut.execute({ userId, title, text });
     expect(createPostSpy).toHaveBeenCalledWith({
-      userId, title, text, totalComments: 0,
+      userId,
+      title,
+      text,
+      totalComments: 0,
     });
   });
 
