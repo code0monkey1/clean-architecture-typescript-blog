@@ -1,10 +1,10 @@
+import DbConnection from '@infra/db/mongodb/helpers/db-connection';
+import { UserRepository } from '@infra/db/mongodb/repositories/UserRepository';
+import setupApp from '@main/config/app';
+import env from '@main/config/env';
+import bcrypt from 'bcrypt';
 import { Collection } from 'mongodb';
 import request from 'supertest';
-import bcrypt from 'bcrypt';
-import DbConnection from '@infra/db/mongodb/helpers/db-connection';
-import setupApp from '@main/config/app';
-import { UserRepository } from '@infra/db/mongodb/repositories/UserRepository';
-import env from '@main/config/env';
 
 describe('authentication routes', () => {
   const app = setupApp();
