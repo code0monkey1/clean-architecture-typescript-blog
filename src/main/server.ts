@@ -11,4 +11,5 @@ DbConnection.connect(env.mongodbUrl)
       console.log(`Server is running on port ${env.port}`);
     });
   })
+  // eslint-disable-next-line no-console
   .catch(console.error);
